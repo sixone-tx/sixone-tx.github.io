@@ -1,55 +1,103 @@
-# Welcome to Jekyll!
-#
-# This config file is meant for settings that affect your whole blog, values
-# which you are expected to set up once and rarely edit after that. If you find
-# yourself editing this file very often, consider using Jekyll's data files
-# feature for the data you need to update frequently.
-#
-# For technical reasons, this file is *NOT* reloaded automatically when you use
-# 'bundle exec jekyll serve'. If you change this file, please restart the server process.
-#
-# If you need help with YAML syntax, here are some quick references for you: 
-# https://learn-the-web.algonquindesign.ca/topics/markdown-yaml-cheat-sheet/#yaml
-# https://learnxinyminutes.com/docs/yaml/
-#
-# Site settings
-# These are used to personalize your new site. If you look in the HTML files,
-# you will see them accessed via {{ site.title }}, {{ site.email }}, and so on.
-# You can create any custom variable you would like, and they will be accessible
-# in the templates via {{ site.myvariable }}.
-
-title: Your awesome title
-email: your-email@example.com
-description: >- # this means to ignore newlines until "baseurl:"
+title: Blog - Leach Chen
+description: > # this means to ignore newlines until "baseurl:"
   Write an awesome description for your new site here. You can edit this
   line in _config.yml. It will appear in your document head meta (for
   Google search results) and in your feed.xml site description.
-baseurl: "" # the subpath of your site, e.g. /blog
+permalink: ':title/'
+#baseurl: "/adam-blog" # the subpath of your site, e.g. /blog
 url: "" # the base hostname & protocol for your site, e.g. http://example.com
-twitter_username: jekyllrb
-github_username:  jekyll
+
+# Author settings add your name
+author: Leach Chen
+
+author-pic: leach-face.jpg
+about-author: I am an Android developer.I will add description latter.
+
+#修改成你自己的
+# Contact links
+website: # Add your website, do not add http://
+linkedin: # Add your Linkedin handle
+twitter: # Add your Twitter handle
+facebook: # Add your Facebook handle
+instagram: # Add your Instagram handle
+pinterest: # Add your Pinterest handle
+
+#修改成你自己的
+email:
+phone:
+github:
+jianshu:
+juejin:
+csdn:
+
+# Newsletter
+mailchimp: # Add your MailChimp form identifier.
+
+# Disqus修改成你自己的
+discus_identifier: leach-chen
+# Add your discus identifier
+
+#intensedebate修改成你自己的
+intensedebate_identifier:
+
+# Tracker Google Analytics修改成你自己的
+google-analysis:
+baidu-analysis:
+
+#youyan
+youyan-id: 2157296
+
+# Paginate
+paginate: 18
+paginate_path: /page:num/
 
 # Build settings
-theme: minima
+markdown: kramdown
 plugins:
+  - jekyll-paginate
   - jekyll-feed
+  - jekyll-sitemap
 
-# Exclude from processing.
-# The following items will not be processed, by default.
-# Any item listed under the `exclude:` key here will be automatically added to
-# the internal "default list".
-#
-# Excluded items can be processed by explicitly listing the directories or
-# their entries' file path in the `include:` list.
-#
-# exclude:
-#   - .sass-cache/
-#   - .jekyll-cache/
-#   - gemfiles/
-#   - Gemfile
-#   - Gemfile.lock
-#   - node_modules/
-#   - vendor/bundle/
-#   - vendor/cache/
-#   - vendor/gems/
-#   - vendor/ruby/
+include: [_pages]
+exclude: ["node_modules", "gulpfile.js", "package.json", "yarn.lock"]
+
+imagepath: /blogdemo
+
+links:
+  - name:         Home
+    url:          https://www.leachchen.com
+    external:     false
+  - name:         About
+    url:          /blogdemo/about
+    external:     false
+
+#添加分类步骤：
+#1：在_config.yml links1及blog_中添加对应内容
+#2：在_includes里面headr.html中添加对应内容
+#3：在根目录blog文件中创建对应内容
+
+label1: <span style="font-size:12px">Publish by
+label2:  </span>
+
+
+links1:
+  - name:         所有
+    url:          /blog
+    type:         recent
+    external:     false
+  - name:         随笔
+    url:          /blogdemo/myblog/essays
+    type:         essays
+    external:     false
+  - name:         Jekyll
+    url:          /blogdemo/myblog/jekyll
+    type:         jekyll
+    external:     false
+
+blog_1:    recent
+blog_2:    essays
+blog_3:    jekyll
+
+
+
+#permalink: /:year/:month/:day/:title.html
