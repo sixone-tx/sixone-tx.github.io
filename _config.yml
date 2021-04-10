@@ -5,17 +5,17 @@ description: > # this means to ignore newlines until "baseurl:"
   Google search results) and in your feed.xml site description.
 permalink: ':title/'
 # baseurl: "/blog" # the subpath of your site, e.g. /blog
-url: "https://www.occcc.cc" # the base hostname & protocol for your site, e.g. http://example.com
+url: "https://www.61byte.com" # the base hostname & protocol for your site, e.g. http://example.com
 
 # Author settings add your name
 author: sixone
 
 author-pic: leach-face.jpg
-about-author: I am an Android developer.I will add description latter.
+about-author: 一个喜欢发呆的理工男！！.
 
 #修改成你自己的
 # Contact links
-website: www.occcc.cc # Add your website, do not add http://
+website: www.61byte.com # Add your website, do not add http://
 linkedin: # Add your Linkedin handle
 twitter: # Add your Twitter handle
 facebook: # Add your Facebook handle
@@ -23,7 +23,7 @@ instagram: # Add your Instagram handle
 pinterest: # Add your Pinterest handle
 
 #修改成你自己的
-email:
+email: sixone.x@qq.com
 phone:
 github:
 jianshu:
@@ -65,7 +65,7 @@ imagepath:
 
 links:
   - name:         Home
-    url:          https://www.occcc.cc
+    url:          https://www.61byte.com
     external:     false
   - name:         About
     url:          /about
@@ -86,7 +86,7 @@ links1:
     type:         recent
     external:     false
   - name:         随笔
-    url:          /{{baseurl}}/myblog/essays
+    url:          /myblog/essays
     type:         essays
     external:     false
   - name:         Jekyll
