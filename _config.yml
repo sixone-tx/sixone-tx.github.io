@@ -101,3 +101,5 @@ blog_3:    jekyll
 
 
 #permalink: /:year/:month/:day/:title.html
+
+theme: jekyll-theme-cayman
