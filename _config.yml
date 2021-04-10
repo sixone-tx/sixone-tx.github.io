@@ -1,4 +1,4 @@
-title: Blog - 61个字节
+title: 61个字节
 description: > # this means to ignore newlines until "baseurl:"
   Write an awesome description for your new site here. You can edit this
   line in _config.yml. It will appear in your document head meta (for
@@ -8,7 +8,7 @@ permalink: ':title/'
 url: "" # the base hostname & protocol for your site, e.g. http://example.com
 
 # Author settings add your name
-author: Leach Chen
+author: sixone
 
 author-pic: leach-face.jpg
 about-author: I am an Android developer.I will add description latter.
@@ -65,7 +65,7 @@ imagepath:
 
 links:
   - name:         Home
-    url:          https://www.leachchen.com
+    url:          https://www.occcc.cc
     external:     false
   - name:         About
     url:          /blogdemo/about
