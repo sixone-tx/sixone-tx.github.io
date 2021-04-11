@@ -38,11 +38,11 @@ discus_identifier: leach-chen
 # Add your discus identifier
 
 #intensedebate修改成你自己的
-intensedebate_identifier:
+# intensedebate_identifier: 410c7d7e2667538e3f48163cdd9e6335
 
 # Tracker Google Analytics修改成你自己的
 google-analysis:
-baidu-analysis:
+baidu-analysis: f1142d1d8fd8f5ba2594e8f0a9d0198d
 
 #youyan
 youyan-id: 2157296
@@ -101,5 +101,3 @@ blog_3:    jekyll
 
 
 #permalink: /:year/:month/:day/:title.html
-
-theme: jekyll-theme-cayman
