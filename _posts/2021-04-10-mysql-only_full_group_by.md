@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Mysql ONLY_FULL_GROUP_BY
+description: \[42000][1055] Expression SELECT list is not in GROUP BY clause and contains nonaggregated column 'shmonitor.c_view.view_id' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by
 img: post-3.jpg # Add image post (optional)
 tags: [mysql]
 author: sixone
