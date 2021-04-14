@@ -89,14 +89,14 @@ links1:
     url:          /myblog/essays
     type:         essays
     external:     false
-  - name:         Jekyll
-    url:          /myblog/jekyll
-    type:         jekyll
+  - name:         技术
+    url:          /myblog/tech
+    type:         tech
     external:     false
 
 blog_1:    recent
 blog_2:    essays
-blog_3:    jekyll
+blog_3:    tech
 
 
 

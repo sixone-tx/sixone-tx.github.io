@@ -5,7 +5,7 @@ description: \[42000][1055] Expression SELECT list is not in GROUP BY clause and
 img: post-3.jpg # Add image post (optional)
 tags: [mysql]
 author: sixone
-jekyll: true
+tech: true
 ---
 
 MySql在低版本（5.7.x以下）中允许select后面的非聚合列不出现在group by中。以下sql在低版本中是可以运行的，但是在5.7及以上版本会报错
