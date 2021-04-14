@@ -15,7 +15,7 @@
     <meta name="msapplication-navbutton-color" content="#311e3e">
     <!-- iOS Safari -->
     <meta name="apple-mobile-web-app-status-bar-style" content="#311e3e">
-
+    <link rel="manifest" href="manifest.json" />
 
 
 
@@ -57,7 +57,14 @@
         });
     </script>
 
-
+    <script>
+        if (navigator.serviceWorker != null) {
+            navigator.serviceWorker.register('sw.js')
+            .then(function(registration) {
+                console.log('Registered events at scope: ', registration.scope);
+            });
+        }
+    </script>
 
 
     <!--谷歌统计-->
@@ -71,4 +78,5 @@
 	  gtag('config', '{{ site.google-analysis }}');
 	</script>-->
 
+    
 </head>
