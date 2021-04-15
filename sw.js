@@ -1,7 +1,7 @@
 console.log("Script loaded!");
 var cacheStorageKey = "minimal-pwa-8";
 
-var cacheList = ["/", "index.html", "main.css", "logo.png", "pwa-fonts.png"];
+var cacheList = ["/", "index.html", "logo.png"];
 
 self.addEventListener("install", function (e) {
   console.log("Cache event!");
