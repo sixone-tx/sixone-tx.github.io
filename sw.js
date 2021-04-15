@@ -1,5 +1,5 @@
 console.log("Script loaded!");
-var cacheStorageKey = "minimal-pwa-8";
+var cacheStorageKey = "61byteCache";
 
 var cacheList = ["/", "index.html", "logo.png"];
 
@@ -38,9 +38,10 @@ self.addEventListener("activate", function (e) {
 });
 
 self.addEventListener("fetch", function (e) {
-  // console.log('Fetch event:', e.request.url)
+  console.log('Fetch event:', e.request.url)
   e.respondWith(
     caches.match(e.request).then(function (response) {
+      console.log(response);
       if (response != null) {
         console.log("Using cache for:", e.request.url);
         return response;
