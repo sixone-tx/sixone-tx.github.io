@@ -1,3 +1,4 @@
+
 console.log("Script loaded!");
 var cacheStorageKey = "61byteCache";
 

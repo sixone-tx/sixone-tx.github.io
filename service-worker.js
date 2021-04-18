@@ -40,8 +40,14 @@ self.addEventListener("activate", (event) => {
   event.waitUntil(
     (async () => {
       // Enable navigation preload if it's supported.
-      // See https://developers.google.com/web/updates/2017/02/navigation-preload
+      // See Speed up Service Worker with Navigation Preloads https://developers.google.com/web/updates/2017/02/navigation-preload
+      // 一文看懂Chrome浏览器运行机制https://zhuanlan.zhihu.com/p/102149546  
       if ("navigationPreload" in self.registration) {
+        // 当您导航到使用service worker来处理获取事件的站点时，浏览器会请求service worker响应。
+        // 这包括启动service worker(如果它还没有运行)，并分派获取事件。
+        // 启动时间取决于设备和条件。通常是50毫秒左右。而在手机平台上则是250毫秒。
+        // 在极端的情况下(慢速设备，CPU故障)，时间可能超过500毫秒。
+        // navigationPreload 会在service-worker启动的时候并行请求资源
         await self.registration.navigationPreload.enable();
       }
     })()
@@ -52,6 +58,7 @@ self.addEventListener("activate", (event) => {
 });
 
 self.addEventListener("fetch", (event) => {
+  console.log(event);
   // We only want to call event.respondWith() if this is a navigation request
   // for an HTML page.
   if (event.request.mode === "navigate") {
@@ -59,6 +66,8 @@ self.addEventListener("fetch", (event) => {
       (async () => {
         try {
           // First, try to use the navigation preload response if it's supported.
+          // FetchEvent.preloadResponse https://developer.mozilla.org/en-US/docs/Web/API/FetchEvent/PreloadResponse
+          // 优先返回使用navigation preload返回
           const preloadResponse = await event.preloadResponse;
           if (preloadResponse) {
             return preloadResponse;
@@ -73,7 +82,8 @@ self.addEventListener("fetch", (event) => {
           // If fetch() returns a valid HTTP response with a response code in
           // the 4xx or 5xx range, the catch() will NOT be called.
           console.log("Fetch failed; returning offline page instead.", error);
-
+          // 如果预加载和网络都没办法获取response，那么使用本地缓存
+          // 还有另一种方案：先加载缓存，如果没有缓存的话，加载网络
           const cache = await caches.open(CACHE_NAME);
           const cachedResponse = await cache.match(OFFLINE_URL);
           return cachedResponse;
