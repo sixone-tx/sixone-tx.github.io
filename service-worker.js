@@ -16,6 +16,10 @@ Copyright 2015, 2019, 2020, 2021 Google LLC. All Rights Reserved.
 // This variable is intentionally declared and unused.
 // Add a comment for your linter if you want:
 // eslint-disable-next-line no-unused-vars
+
+// Service Worker
+// https://developers.google.com/web/fundamentals/primers/service-workers?hl=zh-cn
+
 const OFFLINE_VERSION = 1;
 const CACHE_NAME = "offline-1";
 // Customize this with a different URL if needed.
@@ -42,7 +46,7 @@ self.addEventListener("activate", (event) => {
     (async () => {
       // Enable navigation preload if it's supported.
       // See Speed up Service Worker with Navigation Preloads https://developers.google.com/web/updates/2017/02/navigation-preload
-      // 一文看懂Chrome浏览器运行机制https://zhuanlan.zhihu.com/p/102149546  
+      // 一文看懂Chrome浏览器运行机制https://zhuanlan.zhihu.com/p/102149546
       if ("navigationPreload" in self.registration) {
         // 当您导航到使用service worker来处理获取事件的站点时，浏览器会请求service worker响应。
         // 这包括启动service worker(如果它还没有运行)，并分派获取事件。
