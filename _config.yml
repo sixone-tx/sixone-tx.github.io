@@ -3,17 +3,17 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: Hexo
-subtitle: ''
+title: 61个字节
+subtitle: '集小流成江河'
 description: ''
 keywords:
-author: John Doe
+author: 六一
 language: zh-CN
 timezone: ''
 
 # URL
 ## Set your site url here. For example, if you use GitHub Page, set url as 'https://username.github.io/project'
-url: http://example.com
+url: http://61byte.com
 permalink: :year/:month/:day/:title/
 permalink_defaults:
 pretty_urls:
