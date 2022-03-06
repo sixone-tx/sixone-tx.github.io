@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  
+  
+  
+  <entry>
+    <title>百度统计JS不能访问</title>
+    <link href="/2021/04/14/%E7%99%BE%E5%BA%A6%E7%BB%9F%E8%AE%A1JS%E4%B8%8D%E8%83%BD%E8%AE%BF%E9%97%AE/"/>
+    <url>/2021/04/14/%E7%99%BE%E5%BA%A6%E7%BB%9F%E8%AE%A1JS%E4%B8%8D%E8%83%BD%E8%AE%BF%E9%97%AE/</url>
+    
+    <content type="html"><![CDATA[<p>网站添加百度统计代码后报错；百度攻击JS不能访问；开发者工具报错</p><figure class="highlight armasm"><table><tr><td class="gutter"><div class="code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><pre><code class="hljs armasm">(index):<span class="hljs-number">48</span> <span class="hljs-meta">GET</span> https:<span class="hljs-comment">//hm.baidu.com/hm.js?f1142d1d8 net::ERR_CONNECTION_CLOSED</span><br></code></pre></td></tr></table></figure><p>原因：</p><p>浏览器或系统代理有广告拦截功能；比如装有Clash，具有广告拦截功能，把JS干掉了.退出具有拦截功能的应用，恢复</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>CODE</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>随笔</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>Mysql ONLY_FULL_GROUP_BY</title>
+    <link href="/2021/04/10/mysql_only_full_group_by/"/>
+    <url>/2021/04/10/mysql_only_full_group_by/</url>
+    
+    <content type="html"><![CDATA[<p>MySql在低版本（5.7.x以下）中允许select后面的非聚合列不出现在group by中。以下sql在低版本中是可以运行的，但是在5.7及以上版本会报错</p><p>SQL</p><figure class="highlight sql"><table><tr><td class="gutter"><div class="code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">select</span> view_id,parent_view,<span class="hljs-built_in">count</span>(<span class="hljs-operator">*</span>) <span class="hljs-keyword">from</span> c_view <span class="hljs-keyword">group</span> <span class="hljs-keyword">by</span> parent_view;<br></code></pre></td></tr></table></figure><span id="more"></span><p>报错</p><figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs pgsql">[<span class="hljs-number">42000</span>][<span class="hljs-number">1055</span>] Expression #<span class="hljs-number">1</span> <span class="hljs-keyword">of</span> <span class="hljs-keyword">SELECT</span> list <span class="hljs-keyword">is</span> <span class="hljs-keyword">not</span> <span class="hljs-keyword">in</span> <span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span> clause <span class="hljs-keyword">and</span> contains nonaggregated <span class="hljs-keyword">column</span> <span class="hljs-string">&#x27;shmonitor.c_view.view_id&#x27;</span> which <span class="hljs-keyword">is</span> <span class="hljs-keyword">not</span> functionally dependent <span class="hljs-keyword">on</span> <span class="hljs-keyword">columns</span> <span class="hljs-keyword">in</span> <span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span> clause; this <span class="hljs-keyword">is</span> incompatible <span class="hljs-keyword">with</span> sql_mode=only_full_group_by<br></code></pre></td></tr></table></figure><h2 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h2><p>可以通过三种方式解决报错问题</p><ol><li><p>修改sql使其遵守only_full_group_by规则</p> <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-comment">-- 1 去掉不在group by 中的非聚合列</span><br><span class="hljs-keyword">select</span> parent_view,<span class="hljs-built_in">count</span>(<span class="hljs-operator">*</span>) <span class="hljs-keyword">from</span> c_view <span class="hljs-keyword">group</span> <span class="hljs-keyword">by</span> parent_view;<br><span class="hljs-comment">-- 2 使用any_value</span><br><span class="hljs-comment">-- any_value()会选择被分到同一组的数据里第一条数据的指定列值作为返回数据</span><br><span class="hljs-keyword">select</span> any_value(view_id),parent_view,<span class="hljs-built_in">count</span>(<span class="hljs-operator">*</span>) <span class="hljs-keyword">from</span> c_view <span class="hljs-keyword">group</span> <span class="hljs-keyword">by</span> parent_view;<br></code></pre></td></tr></table></figure></li><li><p>将MySql的版本降到5.7以下</p></li><li><p>关闭only_full_group_by规则</p><p> 查询当前状态</p> <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs sql">   <span class="hljs-keyword">select</span> @<span class="hljs-variable">@sql</span>_mode;<br>ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION<br></code></pre></td></tr></table></figure><p> 修改my.cnf</p> <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">[mysqld]<br>sql_mode=STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION<br></code></pre></td></tr></table></figure></li></ol>]]></content>
+    
+    
+    <categories>
+      
+      <category>CODE</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>mysql</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  
+</search>
