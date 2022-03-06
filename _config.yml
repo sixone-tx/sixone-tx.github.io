@@ -103,4 +103,6 @@ theme: fluid
 # Deployment
 ## Docs: https://hexo.io/docs/one-command-deployment
 deploy:
-  type: ''
+  type: 'git'
+  repo: https://github.com/sixone-tx/sixone-tx.github.io
+  branch: master
